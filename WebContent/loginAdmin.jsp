@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: berna
@@ -11,13 +12,13 @@
     <title>Login Admin</title>
 </head>
 <body>
-    <s:form action="registerAdmin" method="post">
+    <s:form action="loginAdmin" method="post">
         <s:text name="Username:" />
         <s:textfield name="username" /><br>
         <s:text name="Password:" />
         <s:textfield name="password" type="password" /><br>
         <s:submit />
     </s:form>
-    <p><a href="<s:url action="index" />">Back to Index</a></p>
+    <p><a href="<s:url action="index" />">Back to Index From loginAdmin</a></p>
 </body>
 </html>

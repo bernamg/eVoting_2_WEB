@@ -36,15 +36,50 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       </action>
 
       <action name="logAdmin">
-          <result>/regAdmin.jsp</result>
+          <result>/loginAdmin.jsp</result>
+      </action>
+
+      <action name="createUserPage">
+          <result>/createUser.jsp</result>
+      </action>
+
+      <action name="createElectionPage">
+          <result>/createElection.jsp</result>
+      </action>
+
+      <action name="optionsAdminPage">
+          <result>/optionsAdmin.jsp</result>
+      </action>
+
+      <action name="gerirListasPage">
+          <result>/gerirListas.jsp</result>
       </action>
 
 
-      <!-- 'login' action calls 'execute' in 'LoginAction' -->
+
+
+      <!-- 'registerAdmin' action calls 'execute' in 'RegisterAction' -->
     <action name="registerAdmin" class="Admin.action.RegisterAction" method="execute">
       <result name="success">/index.jsp</result>
       <result name="error">/regAdmin.jsp</result>
     </action>
+
+      <action name="createUser" class="Admin.action.CreateUserAction" method="execute">
+          <result name="success">/optionsAdmin.jsp</result>
+          <result name="error">/createUser.jsp</result>
+      </action>
+
+      <action name="createElection" class="Admin.action.CreateElectionAction" method="execute">
+          <result name="success">/optionsAdmin.jsp</result>
+          <result name="error">/createElection.jsp</result>
+      </action>
+
+
+      <!-- 'login' action calls 'execute' in 'LoginAdminAction' -->
+      <action name="loginAdmin" class="Admin.action.LoginAdminAction" method="execute">
+          <result name="success">/optionsAdmin.jsp</result>
+          <result name="login">/loginAdmin.jsp</result>
+      </action>
 
   </package>
 
