@@ -14,7 +14,7 @@
 <body>
     <p><a href="<s:url action="createUserPage" />">Registar Pessoa</a></p>
     <p><a href="<s:url action="createElectionPage" />">Criar Eleicao</a></p>
-    <p><a href="<s:url action="createElectionPage" />">Gerir lista de candidatos numa eleicao</a></p>
+    <p><a href="<s:url action="gerirListasPage" />">Gerir lista de candidatos numa eleicao</a></p>
     <p><a href="<s:url action="index" />">Back to Index From optionsAdmin</a></p>
 </body>
 </html>

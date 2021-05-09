@@ -14,4 +14,7 @@ public interface RMIServerInterface extends Remote {
 	public boolean loginAdmin(String username, String password) throws RemoteException;
 	public boolean createUserWeb(String tipoUser, String username, String password, String dep, String numPhone, String morada, String numCC, String valCC) throws RemoteException;
 	public boolean createElectionWeb(Date dataInicio, Date dataFim, String titulo, String desc, ArrayList<String> quemVota) throws RemoteException;
+	public ArrayList<String> getAllUsers() throws RemoteException;
+	public boolean createListWeb(String nome, String user) throws RemoteException;
+	public ArrayList<String> getAllElections() throws RemoteException;
 }

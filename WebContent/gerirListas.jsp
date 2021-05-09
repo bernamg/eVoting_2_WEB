@@ -12,7 +12,7 @@
     <title>Gerir Listas de Candidatos</title>
 </head>
 <body>
-    <p><a href="<s:url action="index" />">Criar Lista</a></p>
+    <p><a href="<s:url action="criarListaPage" />">Criar Lista</a></p>
     <p><a href="<s:url action="index" />">Editar Listas Existentes</a></p>
     <p><a href="<s:url action="index" />">Voltar</a></p>
 </body>

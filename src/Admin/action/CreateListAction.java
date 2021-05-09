@@ -15,65 +15,32 @@ import Admin.model.RmiBean;
 public class CreateListAction extends ActionSupport implements SessionAware{
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
-    private String titulo=null;
-    private String desc=null;
-    private String quemVota=null;
-    private String dataInicio=null;
-    private String dataFim = null;
-    private String[] tmp=null, tmp1=null;
+    private String nomeLista=null;
+    private String firstUser = null;
     @Override
+
     public String execute() throws RemoteException {
-        tmp = dataInicio.split("[-T:]");
-        Date TdataInicio = new GregorianCalendar(
-                Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1])-1, Integer.parseInt(tmp[2]),
-                Integer.parseInt(tmp[3]), Integer.parseInt(tmp[4])).getTime();
-
-        tmp = dataFim.split("[-T:]");
-        Date TdataFim = new GregorianCalendar(
-                Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1])-1, Integer.parseInt(tmp[2]),
-                Integer.parseInt(tmp[3]), Integer.parseInt(tmp[4])).getTime();
-
-
-        if(this.titulo!=null && !titulo.equals("") && desc != null && !desc.equals("") && quemVota !=null && !quemVota.equals("") && this.dataInicio!=null && !dataInicio.equals("") && this.dataFim!=null && !dataFim.equals("")) {
-            this.getRmiBean().setTitulo(this.titulo);
-            this.getRmiBean().setDesc(this.desc);
-            this.getRmiBean().setDataInicio(TdataInicio);
-            this.getRmiBean().setDataFim(TdataFim);
-            this.getRmiBean().setQuemVota(this.quemVota);
-            if(this.getRmiBean().createElection()){
-                System.out.println("Eleicao Registada");
-                this.getRmiBean().setCheck(0);
+        if(this.nomeLista!=null && !nomeLista.equals("") && firstUser != null && !firstUser.equals("")){
+            this.getRmiBean().setNomeLista(this.nomeLista);
+            this.getRmiBean().setFirstUser(this.firstUser);
+            if(this.getRmiBean().createList()){
+                this.getRmiBean().setCheck(1);
                 return SUCCESS;
             }else{
-                System.out.println("Eleicao nao registada");
                 this.getRmiBean().setCheck(1);
                 return ERROR;
             }
         }
-        else
-            System.out.println("Eleicao nao registada!");
         this.getRmiBean().setCheck(1);
         return ERROR;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNomeLista(String nomeLista) {
+        this.nomeLista = nomeLista;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public void setQuemVota(String quemVota) {
-        this.quemVota = quemVota;
-    }
-
-    public void setDataInicio(String dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public void setDataFim(String dataFim) {
-        this.dataFim = dataFim;
+    public void setFirstUser(String firstUser) {
+        this.firstUser = firstUser;
     }
 
     public RmiBean getRmiBean() {

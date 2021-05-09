@@ -13,8 +13,10 @@ public class RmiBean {
     private RMIServerInterface server;
     private String username; // username and password supplied by the user
     private String password,name=null,dep=null,numPhone=null,morada=null, numCC=null, valCC=null, tipoUser=null, titulo=null, desc=null, quemVota=null;
+    private String nomeLista=null, firstUser = null;
     private Date dataInicio=null, dataFim=null;
     private int check=0;
+    private ArrayList<String> users=null;
     public RmiBean() {
         try {
             server = (RMIServerInterface) Naming.lookup("RMISV");
@@ -54,12 +56,25 @@ public class RmiBean {
         }
         return server.createElectionWeb(dataInicio,dataFim,titulo,desc,quemVota1);
     }
+
+    public boolean createList() throws RemoteException{
+        return server.createListWeb(this.nomeLista,this.firstUser);
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setNomeLista(String nomeLista) {
+        this.nomeLista = nomeLista;
+    }
+
+    public void setFirstUser(String firstUser) {
+        this.firstUser = firstUser;
     }
 
     public void setName(String name) {
@@ -87,6 +102,7 @@ public class RmiBean {
     }
 
     public int getCheck() {
+        System.out.println("called getCheck");
         return this.check;
     }
 
@@ -96,6 +112,18 @@ public class RmiBean {
 
     public void setMorada(String morada) {
         this.morada = morada;
+    }
+
+    public ArrayList<String> getAllUsers() throws RemoteException {
+        System.out.println("called getUsers");
+        return server.getAllUsers();
+
+    }
+
+    public ArrayList<String> getAllElections() throws RemoteException {
+        System.out.println("called getElections");
+        return server.getAllElections();
+
     }
 
     public void setNumCC(String numCC) {
