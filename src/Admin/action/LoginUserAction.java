@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import java.util.Map;
 import Admin.model.RmiBean;
 
-public class LoginAdminAction extends ActionSupport implements SessionAware {
+public class LoginUserAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String username = null, password = null;
@@ -20,11 +20,8 @@ public class LoginAdminAction extends ActionSupport implements SessionAware {
         if(this.username != null && !username.equals("") && this.password !=null && !password.equals("")) {
             this.getRmiBean().setUsername(this.username);
             this.getRmiBean().setPassword(this.password);
-            session.put("username", username);
-            session.put("password",password);
-            session.put("loggedinAdmin", true); // this marks the user as logged in
-            if(this.getRmiBean().adminLogin()){
-                System.out.println("Admin Logged");
+            if(this.getRmiBean().userLogin()){
+                System.out.println("User Logged");
                 return SUCCESS;
             }else{
                 System.out.println("Password Incorreta");

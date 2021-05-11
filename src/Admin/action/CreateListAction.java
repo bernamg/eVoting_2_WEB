@@ -17,26 +17,35 @@ public class CreateListAction extends ActionSupport implements SessionAware{
     private Map<String, Object> session;
     private String nomeLista=null;
     private String firstUser = null;
+    private String election=null;
     @Override
 
     public String execute() throws RemoteException {
-        if(this.nomeLista!=null && !nomeLista.equals("") && firstUser != null && !firstUser.equals("")){
+        if(this.nomeLista!=null && !nomeLista.equals("") && firstUser != null && !firstUser.equals("") && this.election!=null && !election.equals("")){
             this.getRmiBean().setNomeLista(this.nomeLista);
             this.getRmiBean().setFirstUser(this.firstUser);
+            this.getRmiBean().setElection(this.election);
             if(this.getRmiBean().createList()){
-                this.getRmiBean().setCheck(1);
+                this.getRmiBean().setCheck(0);
+                System.out.println("Lista criada");
                 return SUCCESS;
             }else{
                 this.getRmiBean().setCheck(1);
+                System.out.println("Lista Nao criada");
                 return ERROR;
             }
         }
         this.getRmiBean().setCheck(1);
+        System.out.println("Lista Nao criada");
         return ERROR;
     }
 
     public void setNomeLista(String nomeLista) {
         this.nomeLista = nomeLista;
+    }
+
+    public void setElection(String election) {
+        this.election = election;
     }
 
     public void setFirstUser(String firstUser) {

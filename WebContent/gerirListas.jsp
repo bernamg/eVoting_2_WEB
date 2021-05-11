@@ -13,7 +13,7 @@
 </head>
 <body>
     <p><a href="<s:url action="criarListaPage" />">Criar Lista</a></p>
-    <p><a href="<s:url action="index" />">Editar Listas Existentes</a></p>
-    <p><a href="<s:url action="index" />">Voltar</a></p>
+    <p><a href="<s:url action="editarListaEscolhaPage" />">Editar Listas Existentes</a></p>
+    <p><a href="<s:url action="optionsAdminPage" />">Voltar</a></p>
 </body>
 </html>

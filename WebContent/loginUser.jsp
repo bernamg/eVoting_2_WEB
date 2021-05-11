@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login Admin</title>
+    <title>Login User</title>
 </head>
 <body>
     <s:form action="loginAdmin" method="post">

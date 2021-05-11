@@ -14,7 +14,7 @@
 </head>
 <body>
     <c:choose>
-        <c:when test="${RmiBean.check == 1}">
+        <c:when test="${rmiBean.check == 1}">
             <p>---------------------User nao registado---------------------</p>
         </c:when>
     </c:choose>

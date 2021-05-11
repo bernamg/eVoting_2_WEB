@@ -10,17 +10,38 @@
 </head>
 <body>
 
-<c:forEach items="${RmiBean.allUsers}" var="value">
-    <a href="<s:url action="criarListasPage" />">${value}!</a> <br>
-</c:forEach>
+<c:choose>
+    <c:when test="${rmiBean.check == 1}">
+        <p>---------------------Erro na criacao da Eleicao---------------------</p>
+    </c:when>
+</c:choose>
 
 
+<s:form action="createList" method="post">
+    <p>Escolha <strong>um</strong> User:</p>
+    <p>
+        <c:forEach items="${rmiBean.allUsers}" var="value">
 
-<c:forEach items="${RmiBean.allElections}" var="value">
-    <a href="<s:url action="criarListasPage" />">${value}!</a> <br>
-</c:forEach>
+                <input type="radio" id="${value}" name="firstUser" value="${value}">
+                <label for="${value}">${value}</label><br>
 
+        </c:forEach>
+    </p>
+    <p>Escolha uma Eleicao:</p>
+    <p>
+        <c:forEach items="${rmiBean.openElections}" var="value">
+                <input type="radio" id="${value}" name="election" value="${value}">
+                <label for="${value}">${value}</label><br>
+        </c:forEach>
+    </p>
+
+    <p>
+        <s:text name="Nome da Lista:" />
+        <s:textfield name="nomeLista" /><br>
+    </p>
+
+     <s:submit /> <input type="reset">
+</s:form>
 <p><a href="<s:url action="gerirListasPage" />">Back</a></p>
-<p><a href="<s:url action="criarListaPage" />">Here</a></p>
 </body>
 </html>

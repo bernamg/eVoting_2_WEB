@@ -10,7 +10,8 @@
 <body>
 		<p><a href="<s:url action="regAdmin" />">Register Admin</a></p>
 		<p><a href="<s:url action="logAdmin" />">Login Admin</a></p>
-		<p><a href="<s:url action="index" />">Login User</a></p>
+		<p><a href="<s:url action="loginUserPage" />">Login User</a></p>
+
 </body>
 </body>
 </html>

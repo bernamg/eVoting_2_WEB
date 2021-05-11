@@ -59,7 +59,21 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/criarLista.jsp</result>
       </action>
 
+      <action name="gerirMesasPage">
+          <result>/gerirMesas.jsp</result>
+      </action>
 
+      <action name="loginUserPage">
+          <result>/loginUser.jsp</result>
+      </action>
+
+      <action name="editarListaEscolhaPage">
+          <result>/editarListaEscolha.jsp</result>
+      </action>
+
+      <action name="editarLista2Page">
+          <result>/editarLista2.jsp</result>
+      </action>
 
 
       <!-- 'registerAdmin' action calls 'execute' in 'RegisterAction' -->
@@ -74,7 +88,7 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       </action>
 
       <action name="createList" class="Admin.action.CreateListAction" method="execute">
-          <result name="success">/criarLista.jsp</result>
+          <result name="success">/optionsAdmin.jsp</result>
           <result name="error">/criarLista.jsp</result>
       </action>
 
@@ -88,6 +102,31 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       <action name="loginAdmin" class="Admin.action.LoginAdminAction" method="execute">
           <result name="success">/optionsAdmin.jsp</result>
           <result name="login">/loginAdmin.jsp</result>
+      </action>
+
+      <action name="loginUser" class="Admin.action.LoginUserAction" method="execute">
+          <result name="success">/loginUserPage.jsp</result>
+          <result name="login">/index.jsp</result>
+      </action>
+
+
+      <action name="editListFirst" class="Admin.action.EditListAction" method="execute">
+          <result name="success">/editarLista2.jsp</result>
+      </action>
+
+      <action name="editListSecond" class="Admin.action.EditListAction" method="escolhaLista">
+          <result name="success">/editarLista3.jsp</result>
+          <result name="error">/editarLista2.jsp</result>
+      </action>
+
+      <action name="addUserToList" class="Admin.action.EditListAction" method="inserirElemento">
+          <result name="success">/optionsAdmin.jsp</result>
+          <result name="error">/editarLista3.jsp</result>
+      </action>
+
+      <action name="deleteUserFromList" class="Admin.action.EditListAction" method="eliminarElemento">
+          <result name="success">/optionsAdmin.jsp</result>
+          <result name="error">/editarLista3.jsp</result>
       </action>
 
   </package>
