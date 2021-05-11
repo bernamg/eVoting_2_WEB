@@ -2,6 +2,7 @@ package Admin.model;
 
 import rmiserver.RMIServerInterface;
 
+import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.net.MalformedURLException;
@@ -26,7 +27,7 @@ public class RmiBean {
         }
     }
 
-    public boolean checkAdmin() throws RemoteException {
+    public boolean checkAdmin() throws IOException {
         return server.checkNcreateAdmin(this.username,this.password);
     }
 
@@ -59,6 +60,24 @@ public class RmiBean {
             }
         }
         return server.createElectionWeb(dataInicio,dataFim,titulo,desc,quemVota1);
+    }
+
+    public boolean editElection() throws IOException {
+        check =0;
+        String[] tmp = quemVota.split(", ");
+        ArrayList<String> quemVota1 = new ArrayList<>();
+        for(String s : tmp){
+            if (s.equals("estudante")){
+                quemVota1.add("1");
+            }
+            if (s.equals("docente")){
+                quemVota1.add("2");
+            }
+            if (s.equals("funcionario")){
+                quemVota1.add("3");
+            }
+        }
+        return server.editElectionWeb(dataInicio,dataFim,titulo,desc,quemVota1);
     }
 
     public boolean createList() throws RemoteException{
