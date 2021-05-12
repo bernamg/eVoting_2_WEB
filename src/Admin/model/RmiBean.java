@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class RmiBean {
     private RMIServerInterface server;
@@ -18,6 +19,11 @@ public class RmiBean {
     private String nomeLista=null, firstUser = null, election = null, list=null,submitOption=null, user=null, mesa=null;;
     private Date dataInicio=null, dataFim=null;
     private int check=0;
+    private int votosBrancos=0,votosNulos=0,nVotosTotal=0;
+    private float votosBrancosPerc=0,votosNulosPerc=0;
+    private ArrayList<String> nomeListaCandidatos = null;
+    private ArrayList<Integer> votosListaCandidatos = null;
+    private ArrayList<Float> percVotosListaCandidatos = null;
     private ArrayList<String> users=null;
     public RmiBean() {
         try {
@@ -126,6 +132,18 @@ public class RmiBean {
         this.nomeLista = nomeLista;
     }
 
+    public void setVotosBrancosPerc(float votosBrancosPerc) {
+        this.votosBrancosPerc = votosBrancosPerc;
+    }
+
+    public void setVotosNulosPerc(float votosNulosPerc) {
+        this.votosNulosPerc = votosNulosPerc;
+    }
+
+    public void setnVotosTotal(int nVotosTotal) {
+        this.nVotosTotal = nVotosTotal;
+    }
+
     public void setElection(String election) {
         this.election = election;
     }
@@ -156,6 +174,26 @@ public class RmiBean {
 
     public void setQuemVota(String quemVota) {
         this.quemVota = quemVota;
+    }
+
+    public void setVotosBrancos(int votosBrancos) {
+        this.votosBrancos = votosBrancos;
+    }
+
+    public void setVotosNulos(int votosNulos) {
+        this.votosNulos = votosNulos;
+    }
+
+    public void setNomeListaCandidatos(ArrayList<String> nomeListaCandidatos) {
+        this.nomeListaCandidatos = nomeListaCandidatos;
+    }
+
+    public void setVotosListaCandidatos(ArrayList<Integer> votosListaCandidatos) {
+        this.votosListaCandidatos = votosListaCandidatos;
+    }
+
+    public void setPercVotosListaCandidatos(ArrayList<Float> percVotosListaCandidatos) {
+        this.percVotosListaCandidatos = percVotosListaCandidatos;
     }
 
     public void setNumPhone(String numPhone) {
@@ -204,6 +242,14 @@ public class RmiBean {
 
     public ArrayList<String> getOpenElections() throws RemoteException {
         return server.getOpenElections();
+    }
+
+    public ArrayList<String> getClosedElections() throws RemoteException {
+        return server.getClosedElections();
+    }
+
+    public HashMap<String,String> getDetalhesEleicao(String titulo) throws RemoteException {
+        return server.getResultadosEleicao(titulo);
     }
 
     public int getCheck() {

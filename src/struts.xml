@@ -67,6 +67,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/gerirEleicao.jsp</result>
       </action>
 
+      <action name="consultarEleicoesPage">
+          <result>/consultarEleicoes.jsp</result>
+      </action>
+
       <action name="loginUserPage">
           <result>/loginUser.jsp</result>
       </action>
@@ -106,6 +110,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result name="error">/gerirEleicao.jsp</result>
       </action>
 
+      <action name="selectElection" class="Admin.action.SelectElectionAction" method="execute">
+          <result name="success">/consultarEleicaoEscolhida.jsp</result>
+          <result name="error">/optionsAdmin.jsp</result>
+      </action>
 
       <!-- 'login' action calls 'execute' in 'LoginAdminAction' -->
       <action name="loginAdmin" class="Admin.action.LoginAdminAction" method="execute">

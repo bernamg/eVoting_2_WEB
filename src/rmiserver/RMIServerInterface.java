@@ -8,6 +8,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public interface RMIServerInterface extends Remote {
 	public boolean checkNcreateAdmin(String username, String password) throws RemoteException, IOException;
@@ -18,6 +19,8 @@ public interface RMIServerInterface extends Remote {
 	public boolean createListWeb(String nome, String user, String eleicao) throws RemoteException;
 	public boolean editElectionWeb(String eleicao, Date dataInicio, Date dataFim, String titulo, String desc, ArrayList<String> quemVota) throws IOException;
 	public ArrayList<String> getOpenElections() throws RemoteException;
+	public ArrayList<String> getClosedElections() throws RemoteException;
+	public HashMap<String, String> getResultadosEleicao(String titulo) throws RemoteException;
 	public boolean loginUser(String nome, String password) throws RemoteException;
 	public ArrayList<String> getLists(String eleicao) throws RemoteException;
 	public boolean addUserToList(String eleicao, String lista, String user) throws RemoteException;

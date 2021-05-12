@@ -17,6 +17,7 @@
     <p><a href="<s:url action="gerirListasPage" />">Gerir lista de candidatos numa eleicao</a></p>
     <p><a href="<s:url action="gerirMesasPage" />">Gerir Mesas de Voto</a></p>
     <p><a href="<s:url action="gerirEleicaoPage" />">Alterar propriedades de uma eleicao</a></p>
+    <p><a href="<s:url action="consultarEleicoesPage" />">Consultar resultados detalhados de eleições passadas</a></p>
     <p><a href="<s:url action="index" />">Back</a></p>
 </body>
 </html>
