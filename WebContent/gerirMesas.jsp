@@ -13,10 +13,17 @@
     <title>Gerir Mesas de Voto</title>
 </head>
 <body>
-        <p>Adeus</p>
-        <c:forEach items="${rmiBean.allElections}" var="value">
-            <a href="<s:url action="gerirMesasPage" />">${value}!</a> <br>
-        </c:forEach>
+    <p>Eleicao a editar:</p>
+    <s:form action="gerirMesas" method="post">
+        <p>
+            <c:forEach items="${rmiBean.openElections}" var="value">
+                <input type="radio" id="${value}" name="election" value="${value}">
+                <label for="${value}">${value}</label><br>
+            </c:forEach>
+        </p>
+        <p><button type="submit" id="insertTable" name="submitOption" value="insertTable" >Adicionar Mesa</button></p>
+        <p><button type="submit" id="deleteTable" name="submitOption" value="deleteTable" >Eliminar Mesa</button></p>
+    </s:form>
     <p><a href="<s:url action="optionsAdminPage" />">Back</a></p>
 </body>
 </html>

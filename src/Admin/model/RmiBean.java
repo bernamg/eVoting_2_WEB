@@ -1,5 +1,6 @@
 package Admin.model;
 
+
 import rmiserver.RMIServerInterface;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class RmiBean {
     private RMIServerInterface server;
     private String username; // username and password supplied by the user
     private String password,name=null,dep=null,numPhone=null,morada=null, numCC=null, valCC=null, tipoUser=null, titulo=null, desc=null, quemVota=null;
-    private String nomeLista=null, firstUser = null, election = null, list=null,submitOption=null, user=null;
+    private String nomeLista=null, firstUser = null, election = null, list=null,submitOption=null, user=null, mesa=null;;
     private Date dataInicio=null, dataFim=null;
     private int check=0;
     private ArrayList<String> users=null;
@@ -92,8 +93,21 @@ public class RmiBean {
         return server.addUserToList(this.election,this.nomeLista,this.user);
     }
 
+    public boolean addTable() throws RemoteException{
+        return server.addTable(this.election,this.mesa);
+    }
+
+    public boolean delTable() throws RemoteException{
+        return server.delTable(this.election,this.mesa);
+    }
+
     public boolean deleteUserFromList() throws RemoteException{
         return server.deleteUserFromList(this.election,this.nomeLista,this.user);
+    }
+
+    public boolean deleteList() throws  RemoteException{
+        System.out.println("called deleteList");
+        return server.deleteList(this.election,this.list);
     }
 
     public void setUser(String user) {
@@ -180,6 +194,10 @@ public class RmiBean {
         this.submitOption = submitOption;
     }
 
+    public void setMesa(String mesa) {
+        this.mesa = mesa;
+    }
+
     public ArrayList<String> getAllUsers() throws RemoteException {
         return server.getAllUsers();
     }
@@ -203,5 +221,9 @@ public class RmiBean {
 
     public String getSubmitOption() {
         return submitOption;
+    }
+
+    public ArrayList<String> getTablesFromList() throws RemoteException {
+        return server.getTablesFromList(this.election);
     }
 }

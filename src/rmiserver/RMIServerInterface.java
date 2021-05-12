@@ -23,4 +23,8 @@ public interface RMIServerInterface extends Remote {
 	public boolean addUserToList(String eleicao, String lista, String user) throws RemoteException;
 	public ArrayList<String> getUsersFromList(String eleicao, String lista) throws RemoteException;
 	public boolean deleteUserFromList(String eleicao, String lista, String user) throws RemoteException;
+	public boolean deleteList(String eleicao, String lista) throws RemoteException;
+	public ArrayList<String> getTablesFromList(String eleicao) throws  RemoteException;
+	public boolean addTable(String eleicao, String mesa) throws RemoteException;
+	public boolean delTable(String eleicao, String mesa) throws RemoteException;
 }
