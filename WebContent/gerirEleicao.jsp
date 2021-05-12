@@ -22,6 +22,10 @@
         </c:forEach>
     </p>
     <p>
+        <label for="dataInicio">Data e Hora de Inicio:</label>
+        <input type="datetime-local" id="dataInicio" name="dataInicio">
+        <p> <label for="dataFim">Data e Hora de Fim:</label>
+        <input type="datetime-local" id="dataFim" name="dataFim"></p>
         <s:text name="Titulo:" />
         <s:textfield name="titulo" /><br>
         <s:text name="Descricao:" />

@@ -41,7 +41,7 @@ public class EditElectionAction extends ActionSupport implements SessionAware{
         }
 
         if(this.election!=null && !election.equals("")){ // se eleicao tiver sido selecionada
-            System.out.println("ELECTION NOT NULL");
+            this.getRmiBean().setElection(this.election);
             if(titulo!=null && !titulo.equals(""))
                 this.getRmiBean().setTitulo(this.titulo);
             else
@@ -50,10 +50,6 @@ public class EditElectionAction extends ActionSupport implements SessionAware{
                 this.getRmiBean().setDesc(this.desc);
             else
                 this.getRmiBean().setDesc("");
-            if(this.quemVota!=null && !quemVota.equals(""))
-                this.getRmiBean().setQuemVota(this.quemVota);
-            else
-                this.getRmiBean().setQuemVota("");
             if(this.dataInicio!=null && !dataInicio.equals(""))
                 this.getRmiBean().setDataInicio(TdataInicio);
             else
@@ -62,7 +58,6 @@ public class EditElectionAction extends ActionSupport implements SessionAware{
                 this.getRmiBean().setDataFim(TdataFim);
             else
                 this.getRmiBean().setDataFim(null);
-
             if(this.getRmiBean().editElection()){
                 System.out.println("Eleicao Editada");
                 this.getRmiBean().setCheck(0);

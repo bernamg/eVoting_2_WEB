@@ -64,20 +64,25 @@ public class RmiBean {
 
     public boolean editElection() throws IOException {
         check =0;
-        String[] tmp = quemVota.split(", ");
-        ArrayList<String> quemVota1 = new ArrayList<>();
-        for(String s : tmp){
-            if (s.equals("estudante")){
-                quemVota1.add("1");
+        ArrayList<String> quemVota1;
+        if(quemVota!=null) {
+            String[] tmp = quemVota.split(", ");
+            quemVota1 = new ArrayList<>();
+            for (String s : tmp) {
+                if (s.equals("estudante")) {
+                    quemVota1.add("1");
+                }
+                if (s.equals("docente")) {
+                    quemVota1.add("2");
+                }
+                if (s.equals("funcionario")) {
+                    quemVota1.add("3");
+                }
             }
-            if (s.equals("docente")){
-                quemVota1.add("2");
-            }
-            if (s.equals("funcionario")){
-                quemVota1.add("3");
-            }
+        } else {
+            quemVota1 = null;
         }
-        return server.editElectionWeb(dataInicio,dataFim,titulo,desc,quemVota1);
+        return server.editElectionWeb(this.election,dataInicio,dataFim,titulo,desc,quemVota1);
     }
 
     public boolean createList() throws RemoteException{
