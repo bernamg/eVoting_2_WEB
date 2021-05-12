@@ -80,6 +80,10 @@ public class EditElectionAction extends ActionSupport implements SessionAware{
         }
     }
 
+    public void setElection(String election) {
+        this.election = election;
+    }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

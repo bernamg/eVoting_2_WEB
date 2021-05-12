@@ -21,20 +21,6 @@
             <label for="${value}">${value}</label><br>
         </c:forEach>
     </p>
-
-    <h2>Insira as propriedades a alterar</h2>
-    <label for="dataInicio">Data e Hora de Inicio:</label>
-    <input type="datetime-local" id="dataInicio" name="dataInicio">
-    <p> <label for="dataFim">Data e Hora de Fim:</label>
-        <input type="datetime-local" id="dataFim" name="dataFim"></p>
-
-    <p>Escolha <strong>uma ou mais</strong> opcoes:</p>
-    <input type="checkbox" id="estudante" name="quemVota" value="estudante">
-    <label for="estudante">Estudante</label><br>
-    <input type="checkbox" id="docente" name="quemVota" value="docente">
-    <label for="docente"> Docente</label><br>
-    <input type="checkbox" id="funcionario" name="quemVota" value="funcionario">
-    <label for="funcionario">Funcionario</label>
     <p>
         <s:text name="Titulo:" />
         <s:textfield name="titulo" /><br>
