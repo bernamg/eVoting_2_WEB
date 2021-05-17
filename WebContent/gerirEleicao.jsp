@@ -16,7 +16,7 @@
 <p>Eleicao a editar:</p>
 <s:form action="editElection" method="post">
     <p>
-        <c:forEach items="${rmiBean.openElections}" var="value">
+        <c:forEach items="${rmiBean.toStartElections}" var="value">
             <input type="radio" id="${value}" name="election" value="${value}">
             <label for="${value}">${value}</label><br>
         </c:forEach>

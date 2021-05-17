@@ -30,7 +30,11 @@ public class EditListAction extends ActionSupport implements SessionAware{
         if (this.list != null && !list.equals("")) {
             this.getRmiBean().setSubmitOption(this.submitOption);
             this.getRmiBean().setList(this.list);
-            if(this.submitOption.equals("deleteList"))  //tou aqui
+            if(this.submitOption.equals("deleteList")){
+                this.getRmiBean().deleteList();
+                System.out.println("Lista Eliminada");
+                return NONE;
+            }
             this.getRmiBean().setCheck(0);
             return SUCCESS;
         }else{

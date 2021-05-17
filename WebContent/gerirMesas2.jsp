@@ -44,7 +44,7 @@
 
     </c:when>
 </c:choose>
-<p><a href="<s:url action="gerirListasPage" />">Back</a></p>
+<p><a href="<s:url action="gerirMesasPage" />">Back</a></p>
 
 
 </body>

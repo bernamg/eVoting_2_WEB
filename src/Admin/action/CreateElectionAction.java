@@ -41,17 +41,14 @@ public class CreateElectionAction extends ActionSupport implements SessionAware{
             this.getRmiBean().setDataFim(TdataFim);
             this.getRmiBean().setQuemVota(this.quemVota);
             if(this.getRmiBean().createElection()){
-                System.out.println("Eleicao Registada");
                 this.getRmiBean().setCheck(0);
                 return SUCCESS;
             }else{
-                System.out.println("Eleicao nao registada");
                 this.getRmiBean().setCheck(1);
                 return ERROR;
             }
         }
         else
-            System.out.println("Eleicao nao registada!");
             this.getRmiBean().setCheck(1);
             return ERROR;
     }

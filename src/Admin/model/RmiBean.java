@@ -1,6 +1,7 @@
 package Admin.model;
 
 
+import Admin.ws.WebSocketAnnotation;
 import rmiserver.RMIServerInterface;
 
 import java.io.IOException;
@@ -14,28 +15,28 @@ import java.util.HashMap;
 
 public class RmiBean {
     private RMIServerInterface server;
-    private String username; // username and password supplied by the user
-    private String password,name=null,dep=null,numPhone=null,morada=null, numCC=null, valCC=null, tipoUser=null, titulo=null, desc=null, quemVota=null;
-    private String nomeLista=null, firstUser = null, election = null, list=null,submitOption=null, user=null, mesa=null;;
-    private Date dataInicio=null, dataFim=null;
-    private int check=0;
-    private int votosBrancos=0,votosNulos=0,nVotosTotal=0;
-    private float votosBrancosPerc=0,votosNulosPerc=0;
+    private String username = null, userLoggedIn = null; // username and password supplied by the user
+    private String password, name = null, dep = null, numPhone = null, morada = null, numCC = null, valCC = null, tipoUser = null, titulo = null, desc = null, quemVota = null;
+    private String nomeLista = null, firstUser = null, election = null, list = null, submitOption = null, user = null, mesa = null, voto = null;
+    private Date dataInicio = null, dataFim = null;
+    private int check = 0;
+    private int votosBrancos = 0, votosNulos = 0, nVotosTotal = 0;
+    private float votosBrancosPerc = 0, votosNulosPerc = 0;
     private ArrayList<String> nomeListaCandidatos = null;
     private ArrayList<Integer> votosListaCandidatos = null;
     private ArrayList<Float> percVotosListaCandidatos = null;
-    private ArrayList<String> users=null;
+    private ArrayList<String> users = null;
+
     public RmiBean() {
         try {
             server = (RMIServerInterface) Naming.lookup("RMISV");
-        }
-        catch(NotBoundException | RemoteException | MalformedURLException e) {
+        } catch (NotBoundException | RemoteException | MalformedURLException e) {
             e.printStackTrace(); // what happens *after* we reach this line?
         }
     }
 
     public boolean checkAdmin() throws IOException {
-        return server.checkNcreateAdmin(this.username,this.password);
+        return server.checkNcreateAdmin(this.username, this.password);
     }
 
     public boolean adminLogin() throws RemoteException {
@@ -46,33 +47,34 @@ public class RmiBean {
         return server.loginUser(this.username, this.password);
     }
 
-    public boolean createUser() throws RemoteException{
-        check=0;
-        return server.createUserWeb(this.tipoUser,this.username,this.password,this.dep,this.numPhone,this.morada,this.numCC,this.valCC);
+    public boolean createUser() throws RemoteException {
+        check = 0;
+        return server.createUserWeb(this.tipoUser, this.username, this.password, this.dep, this.numPhone, this.morada, this.numCC, this.valCC);
     }
 
-    public boolean createElection() throws RemoteException{
-        check =0;
+    public boolean createElection() throws RemoteException {
+        check = 0;
         String[] tmp = quemVota.split(", ");
         ArrayList<String> quemVota1 = new ArrayList<>();
-        for(String s : tmp){
-            if (s.equals("estudante")){
+        for (String s : tmp) {
+            if (s.equals("Estudante")) {
                 quemVota1.add("1");
             }
-            if (s.equals("docente")){
+            if (s.equals("Docente")) {
                 quemVota1.add("2");
             }
-            if (s.equals("funcionario")){
+            if (s.equals("Funcionario")) {
                 quemVota1.add("3");
             }
         }
-        return server.createElectionWeb(dataInicio,dataFim,titulo,desc,quemVota1);
+        System.out.println("quemVota1: " + quemVota1);
+        return server.createElectionWeb(dataInicio, dataFim, titulo, desc, quemVota1);
     }
 
     public boolean editElection() throws IOException {
-        check =0;
+        check = 0;
         ArrayList<String> quemVota1;
-        if(quemVota!=null) {
+        if (quemVota != null) {
             String[] tmp = quemVota.split(", ");
             quemVota1 = new ArrayList<>();
             for (String s : tmp) {
@@ -89,31 +91,37 @@ public class RmiBean {
         } else {
             quemVota1 = null;
         }
-        return server.editElectionWeb(this.election,dataInicio,dataFim,titulo,desc,quemVota1);
+        return server.editElectionWeb(this.election, dataInicio, dataFim, titulo, desc, quemVota1);
     }
 
-    public boolean createList() throws RemoteException{
-        return server.createListWeb(this.nomeLista,this.firstUser,this.election);
-    }
-    public boolean insertUserToList() throws RemoteException{
-        return server.addUserToList(this.election,this.nomeLista,this.user);
+    public boolean createList() throws RemoteException {
+        return server.createListWeb(this.nomeLista, this.firstUser, this.election);
     }
 
-    public boolean addTable() throws RemoteException{
-        return server.addTable(this.election,this.mesa);
+    public boolean insertUserToList() throws RemoteException {
+        return server.addUserToList(this.election, this.nomeLista, this.user);
     }
 
-    public boolean delTable() throws RemoteException{
-        return server.delTable(this.election,this.mesa);
+    public boolean addTable() throws RemoteException {
+        return server.addTable(this.election, this.mesa);
     }
 
-    public boolean deleteUserFromList() throws RemoteException{
-        return server.deleteUserFromList(this.election,this.nomeLista,this.user);
+    public boolean delTable() throws RemoteException {
+        return server.delTable(this.election, this.mesa);
     }
 
-    public boolean deleteList() throws  RemoteException{
+    public boolean deleteUserFromList() throws RemoteException {
+        return server.deleteUserFromList(this.election, this.nomeLista, this.user);
+    }
+
+    public boolean deleteList() throws RemoteException {
         System.out.println("called deleteList");
-        return server.deleteList(this.election,this.list);
+        return server.deleteList(this.election, this.list);
+    }
+
+
+    public void setUserLoggedIn(String userLoggedIn) {
+        this.userLoggedIn = userLoggedIn;
     }
 
     public void setUser(String user) {
@@ -196,6 +204,10 @@ public class RmiBean {
         this.percVotosListaCandidatos = percVotosListaCandidatos;
     }
 
+    public void setVoto(String voto) {
+        this.voto = voto;
+    }
+
     public void setNumPhone(String numPhone) {
         this.numPhone = numPhone;
     }
@@ -248,8 +260,9 @@ public class RmiBean {
         return server.getClosedElections();
     }
 
-    public HashMap<String,String> getDetalhesEleicao(String titulo) throws RemoteException {
-        return server.getResultadosEleicao(titulo);
+
+    public ArrayList<String> getToStartElections() throws RemoteException {
+        return server.getToStartElections();
     }
 
     public int getCheck() {
@@ -257,12 +270,11 @@ public class RmiBean {
     }
 
     public ArrayList<String> getList() throws RemoteException {
-        return  server.getLists(this.election);
+        return server.getLists(this.election);
     }
 
     public ArrayList<String> getUsersFromList() throws RemoteException {
-        System.out.println("Called getUserFromList");
-        return server.getUsersFromList(this.election,this.nomeLista);
+        return server.getUsersFromList(this.election, this.nomeLista);
     }
 
     public String getSubmitOption() {
@@ -272,4 +284,37 @@ public class RmiBean {
     public ArrayList<String> getTablesFromList() throws RemoteException {
         return server.getTablesFromList(this.election);
     }
+
+    public ArrayList<String> getPossibleElections() throws RemoteException {
+        return server.getPossibleElections(this.username);
+    }
+
+
+    public boolean votar() throws RemoteException {
+        System.out.println("called Votar");
+        return server.votarWeb(this.election, this.voto);
+    }
+
+    public boolean userVoted() throws RemoteException {
+        System.out.println("called userVoted");
+        return server.userVoted(this.userLoggedIn, this.election);
+    }
+
+    public String getUserLoggedIn() {
+        return userLoggedIn;
+    }
+
+    public ArrayList<String> getInfoUser() throws RemoteException {
+        return server.infoUser(this.user);
+    }
+
+    public ArrayList<String> getResultsElection() throws RemoteException {
+        return server.resultsElection(this.election);
+    }
+
+    public ArrayList<String> getInfoEleicoes() throws RemoteException {
+        return server.getInfoEleicoes();
+    }
+
 }
+

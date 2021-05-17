@@ -27,6 +27,8 @@ public class CreateUserAction extends ActionSupport implements SessionAware{
             this.getRmiBean().setTipoUser(this.tipoUser);
             this.getRmiBean().setValCC(this.valCC);
             if(this.getRmiBean().createUser()){
+                System.out.println("Username: "+this.username);
+                System.out.println("Password: "+this.password);
                 System.out.println("User Registado");
                 this.getRmiBean().setCheck(0);
                 return SUCCESS;

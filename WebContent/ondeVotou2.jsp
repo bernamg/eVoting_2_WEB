@@ -9,16 +9,14 @@
     <title>Editar Lista</title>
 </head>
 <body>
-<p>Eleicao a editar:</p>
-<s:form action="editListFirst" method="post">
+
+<p>Detalhes de Eleitor:</p>
+
     <p>
-        <c:forEach items="${rmiBean.toStartElections}" var="value">
-            <input type="radio" id="${value}" name="election" value="${value}">
-            <label for="${value}">${value}</label><br>
+        <c:forEach items="${rmiBean.infoUser}" var="value">
+            <c:out value="${value}" /><br>
         </c:forEach>
     </p>
-    <s:submit />
-</s:form>
-<p><a href="<s:url action="gerirListasPage" />">Back</a></p>
+<p><a href="<s:url action="ondeVotouPage" />">Back</a></p>
 </body>
 </html>

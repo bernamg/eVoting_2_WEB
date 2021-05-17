@@ -26,11 +26,11 @@
         <input type="datetime-local" id="dataFim" name="dataFim"></p>
 
         <p>Escolha <strong>uma ou mais</strong> opcoes:</p>
-        <input type="checkbox" id="estudante" name="quemVota" value="estudante">
+        <input type="checkbox" id="estudante" name="quemVota" value="Estudante">
         <label for="estudante">Estudante</label><br>
-        <input type="checkbox" id="docente" name="quemVota" value="docente">
+        <input type="checkbox" id="docente" name="quemVota" value="Docente">
         <label for="docente"> Docente</label><br>
-        <input type="checkbox" id="funcionario" name="quemVota" value="funcionario">
+        <input type="checkbox" id="funcionario" name="quemVota" value="Funcionario">
         <label for="funcionario">Funcionario</label>
     <p>
         <s:text name="Titulo:" />

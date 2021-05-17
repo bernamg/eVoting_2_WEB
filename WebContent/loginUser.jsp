@@ -12,7 +12,7 @@
     <title>Login User</title>
 </head>
 <body>
-    <s:form action="loginAdmin" method="post">
+    <s:form action="loginUser" method="post">
         <s:text name="Username:" />
         <s:textfield name="username" /><br>
         <s:text name="Password:" />

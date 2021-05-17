@@ -83,6 +83,17 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/editarLista2.jsp</result>
       </action>
 
+      <action name="votarEleicaoPage">
+          <result>/votarEleicao.jsp</result>
+      </action>
+
+      <action name="ondeVotouPage">
+          <result>/ondeVotou.jsp</result>
+      </action>
+
+      <action name="detalhesEleicoesPage">
+          <result>/detalhesEleicoes.jsp</result>
+      </action>
 
       <!-- 'registerAdmin' action calls 'execute' in 'RegisterAction' -->
     <action name="registerAdmin" class="Admin.action.RegisterAction" method="execute">
@@ -110,11 +121,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result name="error">/gerirEleicao.jsp</result>
       </action>
 
-      <action name="selectElection" class="Admin.action.SelectElectionAction" method="execute">
-          <result name="success">/consultarEleicaoEscolhida.jsp</result>
-          <result name="error">/optionsAdmin.jsp</result>
-      </action>
-
       <!-- 'login' action calls 'execute' in 'LoginAdminAction' -->
       <action name="loginAdmin" class="Admin.action.LoginAdminAction" method="execute">
           <result name="success">/optionsAdmin.jsp</result>
@@ -122,8 +128,8 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       </action>
 
       <action name="loginUser" class="Admin.action.LoginUserAction" method="execute">
-          <result name="success">/loginUserPage.jsp</result>
-          <result name="login">/index.jsp</result>
+          <result name="success">/votarEleicao.jsp</result>
+          <result name="login">/loginUser.jsp</result>
       </action>
 
 
@@ -162,6 +168,32 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result name="error">/gerirMesas2.jsp</result>
       </action>
 
+      <!-- 'login' action calls 'execute' in 'LoginAdminAction' -->
+      <action name="loginAdmin" class="Admin.action.LoginAdminAction" method="execute">
+          <result name="success">/optionsAdmin.jsp</result>
+          <result name="login">/loginAdmin.jsp</result>
+      </action>
+
+
+      <action name="votarEleicao" class="Admin.action.VoteElectionAction" method="execute">
+          <result name="success">/votarEleicao2.jsp</result>
+          <result name="error">/votarEleicao.jsp</result>
+      </action>
+
+      <action name="votarEleicaoFinal" class="Admin.action.VoteElectionAction" method="votar">
+          <result name="success">/index.jsp</result>
+          <result name="error">/votarEleicao2.jsp</result>
+      </action>
+
+      <action name="ondeVotou" class="Admin.action.OndeVotouAction" method="execute">
+          <result name="success">/ondeVotou2.jsp</result>
+          <result name="error">/ondeVotou.jsp</result>
+      </action>
+
+      <action name="ElectionResult" class="Admin.action.ResultsElectionAction" method="execute">
+          <result name="success">/consultarEleicaoEscolhida.jsp</result>
+          <result name="error">/consultarEleicoes.jsp</result>
+      </action>
   </package>
 
 </struts>

@@ -21,18 +21,16 @@ public class LoginAdminAction extends ActionSupport implements SessionAware {
             this.getRmiBean().setUsername(this.username);
             this.getRmiBean().setPassword(this.password);
             session.put("username", username);
-            session.put("password",password);
             session.put("loggedinAdmin", true); // this marks the user as logged in
             if(this.getRmiBean().adminLogin()){
-                System.out.println("Admin Logged");
                 return SUCCESS;
             }else{
-                System.out.println("Password Incorreta");
                 return LOGIN;
             }
         }
-        else
+        else {
             return LOGIN;
+        }
     }
 
 

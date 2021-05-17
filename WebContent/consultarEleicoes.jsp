@@ -13,13 +13,20 @@
     <title>Consultar Eleicoes</title>
 </head>
 <body>
-    <s:form action="selectElection" method="post">
-        <h3>Eleicoes passadas</h3>
-    <c:forEach items="${rmiBean.closedElections}" var="value">
-        <input type="radio" id="${value}" name="election" value="${value}">
-        <label for="${value}">${value}</label><br>
-    </c:forEach>
-    <s:submit />
+<c:choose>
+    <c:when test="${rmiBean.check == 1}">
+        <p>---------------------Erro na escolha de Eleicao---------------------</p>
+    </c:when>
+</c:choose>
+
+    <s:form action="ElectionResult" method="post">
+        <c:forEach items="${rmiBean.closedElections}" var="value">
+            <input type="radio" id="${value}" name="election" value="${value}">
+            <label for="${value}">${value}</label><br>
+        </c:forEach>
+        <s:submit />
     </s:form>
+
+    <p><a href="<s:url action="optionsAdminPage" />">Back</a></p>
 </body>
 </html>

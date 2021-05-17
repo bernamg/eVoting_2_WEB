@@ -13,10 +13,12 @@
     <title>Consultar Eleicoes</title>
 </head>
 <body>
-    <h3>Eleicao escolhida: </h3>
-
-    <h2>Detalhes:</h2>
-
+     <p>Resultados da Eleicao:</p>
+     <p>
+         <c:forEach items="${rmiBean.resultsElection}" var="value">
+             <c:out value="${value}" /><br>
+         </c:forEach>
+     </p>
     <p><a href="<s:url action="optionsAdminPage" />">Back</a></p>
 </body>
 </html>

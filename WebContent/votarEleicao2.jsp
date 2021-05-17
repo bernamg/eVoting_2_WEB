@@ -6,19 +6,26 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Editar Lista</title>
+    <title>Votar em Lista</title>
 </head>
 <body>
-<p>Eleicao a editar:</p>
-<s:form action="editListFirst" method="post">
-    <p>
-        <c:forEach items="${rmiBean.toStartElections}" var="value">
-            <input type="radio" id="${value}" name="election" value="${value}">
+
+<c:choose>
+    <c:when test="${rmiBean.check == 1}">
+        <p>---------------------Erro ao Votar---------------------</p>
+    </c:when>
+</c:choose>
+
+
+<s:form action="votarEleicaoFinal" method="post">
+    <p>Escolha <strong>a</strong> Lista em que quer votar:</p>
+        <c:forEach items="${rmiBean.list}" var="value">
+            <input type="checkbox" id="${value}" name="votos" value="${value}">
             <label for="${value}">${value}</label><br>
         </c:forEach>
-    </p>
     <s:submit />
 </s:form>
-<p><a href="<s:url action="gerirListasPage" />">Back</a></p>
+
+<p><a href="<s:url action="votarEleicaoPage" />">Back</a></p>
 </body>
 </html>
