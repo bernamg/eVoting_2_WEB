@@ -82,10 +82,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/consultarEleicoes.jsp</result>
       </action>
 
-      <action name="loginUserPage">
-          <result>/loginUser.jsp</result>
-      </action>
-
       <action name="editarListaEscolhaPage">
           <result>/editarListaEscolha.jsp</result>
       </action>
@@ -144,10 +140,19 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result name="login">/loginAdmin.jsp</result>
       </action>
 
+      <action name="prepararLoginUser" class="Admin.action.PrepararLoginUserAction" method="execute">
+          <result name="success">/loginUser.jsp</result>
+      </action>
+
+      <action name="loginUserFB" class="Admin.action.LoginUserFBAction" method="execute">
+          <result name="success">/votarEleicao.jsp</result>
+      </action>
+
       <action name="loginUser" class="Admin.action.LoginUserAction" method="execute">
           <result name="success">/votarEleicao.jsp</result>
           <result name="login">/loginUser.jsp</result>
       </action>
+
 
 
       <action name="editListFirst" class="Admin.action.EditListAction" method="execute">

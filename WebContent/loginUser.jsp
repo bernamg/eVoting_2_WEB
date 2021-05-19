@@ -12,6 +12,9 @@
     <title>Login User</title>
 </head>
 <body>
+
+    <p><a href="${facebookBean.authorizationUrl}">Login com o FB</a></p>
+
     <s:form action="loginUser" method="post">
         <s:text name="Username:" />
         <s:textfield name="username" /><br>
