@@ -6,16 +6,13 @@ import Admin.ws.WebSocketAnnotation;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Map;
-import Admin.model.RmiBean;
 
 public class LoginUserAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String username = null, password = null;
-
     @Override
     public String execute() throws RemoteException {
         if(this.username != null && !username.equals("") && this.password !=null && !password.equals("")) { ;
@@ -25,6 +22,7 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
             if(this.getRmiBean().userLogin()){
                 session.put("username", username);
                 session.put("loggedin", true); // this marks the user as logged in
+                System.out.println("User logado");
                 return SUCCESS;
             }else{
                 return LOGIN;
@@ -49,22 +47,15 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
         return (RmiBean) session.get("rmiBean");
     }
 
-    public WebSocketAnnotation getWebSocket() {
-        if(!session.containsKey("webSocket"))
-            this.setWebsocket(new WebSocketAnnotation());
-        return (WebSocketAnnotation) session.get("webSocket");
-    }
-
 
     public void setRmiBean(RmiBean rmiBean) {
         this.session.put("rmiBean", rmiBean);
     }
 
-    public void setWebsocket(WebSocketAnnotation webSocket) {
-        this.session.put("webSocket", webSocket);
-    }
     @Override
     public void setSession(Map<String, Object> session) {
         this.session = session;
     }
+
+
 }

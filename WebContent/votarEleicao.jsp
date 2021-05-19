@@ -7,6 +7,48 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Editar Lista</title>
+    <script type="text/javascript">
+
+
+        var websocket = null;
+
+        window.onload = function() { // URI = ws://10.16.0.165:8080/WebSocket/ws
+            connect('ws://' + window.location.host + '/metaWeb/ws');
+        }
+
+        function connect(host) { // connect to the host websocket
+            if ('WebSocket' in window) {
+                websocket = new WebSocket(host);
+            }
+            else if ('MozWebSocket' in window)
+                websocket = new MozWebSocket(host);
+            else {
+                return;
+            }
+
+            websocket.onclose   = onClose;
+
+        }
+
+        function logout(){
+            websocket.send("Logged Out");
+        }
+
+        function doSend() {
+            var message = document.getElementById('chat').value;
+            if (message != '')
+                websocket.send(message); // send the message to the server
+            document.getElementById('chat').value = '';
+
+        }
+        function onClose(event) {
+            writeToHistory('WebSocket closed (code ' + event.code + ').');
+        }
+
+
+
+
+    </script>
 </head>
 <body>
 
@@ -19,8 +61,10 @@
             <label for="${value}">${value}</label><br>
         </c:forEach>
     </p>
-    <s:submit />
+    <p> <button type="submit" onclick="logout()" >Submit</button></p>
 </s:form>
-<p><a href="<s:url action="index" />">Logout</a></p>
+<p><a href="<s:url action="index" />" id="logout" value="Logout" onclick="logout()">Logout</a> </p>
+
+
 </body>
 </html>

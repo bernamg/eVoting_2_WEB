@@ -12,9 +12,18 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
   <!-- devMode equals debug information and reload everything for every request -->
   <constant name="struts.devMode" value="true" />
   <constant name="struts.ui.theme" value="simple" />
-
+  <constant name="struts.action.excludePattern" value="/ws"/>
   <package name="Admin" extends="struts-default">
-	
+
+      <interceptors>
+          <interceptor name="adminInterceptor" class="Admin.interceptor.AdminInterceptor" />
+          <interceptor-stack name="adminStack">
+              <interceptor-ref name="adminInterceptor" />
+              <interceptor-ref name="defaultStack" />
+          </interceptor-stack>
+      </interceptors>
+
+      <default-interceptor-ref name="adminStack" />
 	<default-action-ref name="index" />
 	
 	<global-results>
@@ -25,6 +34,8 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
 	<global-exception-mappings>
 		<exception-mapping exception="java.lang.Exception" result="error" />
 	</global-exception-mappings>
+
+
 
 	<!-- 'index' action leads to the view provided by index.jsp -->
     <action name="index">
@@ -95,6 +106,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/detalhesEleicoes.jsp</result>
       </action>
 
+      <action name="estadoUserPage">
+          <result>/estadoUsers.html</result>
+      </action>
+
       <!-- 'registerAdmin' action calls 'execute' in 'RegisterAction' -->
     <action name="registerAdmin" class="Admin.action.RegisterAction" method="execute">
       <result name="success">/index.jsp</result>
@@ -102,6 +117,8 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
 
       <action name="createUser" class="Admin.action.CreateUserAction" method="execute">
+          <interceptor-ref name="defaultStack" />
+          <result name="login" type="redirectAction">index.jspg</result>
           <result name="success">/optionsAdmin.jsp</result>
           <result name="error">/criarUser.jsp</result>
       </action>

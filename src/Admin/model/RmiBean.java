@@ -1,7 +1,6 @@
 package Admin.model;
 
 
-import Admin.ws.WebSocketAnnotation;
 import rmiserver.RMIServerInterface;
 
 import java.io.IOException;
@@ -11,11 +10,11 @@ import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 public class RmiBean {
     private RMIServerInterface server;
-    private String username = null, userLoggedIn = null; // username and password supplied by the user
+    private String username = null; // username and password supplied by the user
+    private String  userLoggedIn = null;
     private String password, name = null, dep = null, numPhone = null, morada = null, numCC = null, valCC = null, tipoUser = null, titulo = null, desc = null, quemVota = null;
     private String nomeLista = null, firstUser = null, election = null, list = null, submitOption = null, user = null, mesa = null, voto = null;
     private Date dataInicio = null, dataFim = null;
@@ -292,12 +291,19 @@ public class RmiBean {
 
     public boolean votar() throws RemoteException {
         System.out.println("called Votar");
-        return server.votarWeb(this.election, this.voto);
+        System.out.println("this.voto: "+this.voto);
+        System.out.println("this.election: "+this.election);
+        boolean a = server.votarWeb(this.election, this.voto);
+        System.out.println("print a: "+a);
+        return a;
     }
 
     public boolean userVoted() throws RemoteException {
         System.out.println("called userVoted");
-        return server.userVoted(this.userLoggedIn, this.election);
+        boolean a =server.userVoted(this.userLoggedIn, this.election);
+        System.out.println("print do a: "+a);
+        return a;
+
     }
 
     public String getUserLoggedIn() {
@@ -315,6 +321,11 @@ public class RmiBean {
     public ArrayList<String> getInfoEleicoes() throws RemoteException {
         return server.getInfoEleicoes();
     }
+
+    public String getElection() {
+        return election;
+    }
+
 
 }
 

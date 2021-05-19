@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.Map;
 import Admin.model.RmiBean;
 
-public class ResultsElectionAction extends ActionSupport implements SessionAware{
+public class ResultsElectionAction extends ActionSupport implements SessionAware, AdminAction{
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String election=null;

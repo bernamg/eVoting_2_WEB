@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
 import java.util.Map;
 import Admin.model.RmiBean;
 
-public class RegisterAction extends ActionSupport implements SessionAware{
+public class RegisterAction extends ActionSupport implements SessionAware, AdminAction{
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String username = null, password = null;

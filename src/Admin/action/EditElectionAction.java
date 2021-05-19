@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
-public class EditElectionAction extends ActionSupport implements SessionAware{
+public class EditElectionAction extends ActionSupport implements SessionAware, AdminAction{
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String election=null;

@@ -2,6 +2,7 @@
 package Admin.action;
 
 import Admin.model.RmiBean;
+import Admin.ws.WebSocketAnnotation;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -30,8 +31,11 @@ public class VoteElectionAction extends ActionSupport implements SessionAware{
     public String votar() throws RemoteException {
         this.getRmiBean().setVoto(this.votos);
         if(this.getRmiBean().votar() && this.getRmiBean().userVoted()) {
+            System.out.println("success");
+            this.getRmiBean().setElection(null);
             return SUCCESS;
         }else{
+            System.out.println("error");
             return ERROR;
         }
     }
