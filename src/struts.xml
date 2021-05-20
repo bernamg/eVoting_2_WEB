@@ -50,6 +50,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/loginAdmin.jsp</result>
       </action>
 
+      <action name="logUser">
+          <result>/loginUser.jsp</result>
+      </action>
+
       <action name="createUserPage">
           <interceptor-ref name="loginStack" />
           <result>/criarUser.jsp</result>
@@ -96,10 +100,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <interceptor-ref name="loginStack" />
           <result>/consultarEleicoes.jsp</result>
           <result name="login" type="redirectAction">/index.jsp</result>
-      </action>
-
-      <action name="loginUserPage">
-          <result>/loginUser.jsp</result>
       </action>
 
       <action name="editarListaEscolhaPage">
@@ -168,10 +168,17 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result name="login">/loginAdmin.jsp</result>
       </action>
 
-      <action name="loginUser" class="Admin.action.LoginUserAction" method="execute">
+
+      <action name="associarUserFB" class="Admin.action.AssociarUserFBAction" method="execute">
           <result name="success">/votarEleicao.jsp</result>
+          <result name="error">/loginUser.jsp</result>
+      </action>
+
+      <action name="loginUser" class="Admin.action.LoginUserAction" method="execute">
+          <result name="success">/optionsUser.jsp</result>
           <result name="login">/loginUser.jsp</result>
       </action>
+
 
 
       <action name="editListFirst" class="Admin.action.EditListAction" method="execute">
