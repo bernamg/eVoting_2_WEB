@@ -81,7 +81,7 @@ public class CreateUserAction extends ActionSupport implements SessionAware, Adm
         this.password = password; // what about this input?
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

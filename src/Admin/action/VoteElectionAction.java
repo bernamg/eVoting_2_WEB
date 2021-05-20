@@ -33,6 +33,7 @@ public class VoteElectionAction extends ActionSupport implements SessionAware{
         if(this.getRmiBean().votar() && this.getRmiBean().userVoted()) {
             System.out.println("success");
             this.getRmiBean().setElection(null);
+            this.getRmiBean().setUserLoggedIn(null);
             return SUCCESS;
         }else{
             System.out.println("error");
@@ -49,7 +50,7 @@ public class VoteElectionAction extends ActionSupport implements SessionAware{
         this.votos = votos;
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

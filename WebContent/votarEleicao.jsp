@@ -31,7 +31,13 @@
         }
 
         function logout(){
+
             websocket.send("Logged Out");
+        }
+
+        function proxima(){
+
+            websocket.send("Logged Out para eleicao");
         }
 
         function doSend() {
@@ -61,7 +67,7 @@
             <label for="${value}">${value}</label><br>
         </c:forEach>
     </p>
-    <p> <button type="submit" onclick="logout()" >Submit</button></p>
+    <p> <button type="submit">Submit</button></p>
 </s:form>
 <p><a href="<s:url action="index" />" id="logout" value="Logout" onclick="logout()">Logout</a> </p>
 

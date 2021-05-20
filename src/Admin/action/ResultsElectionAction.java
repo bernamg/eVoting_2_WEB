@@ -32,7 +32,7 @@ public class ResultsElectionAction extends ActionSupport implements SessionAware
         this.election = election;
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

@@ -34,6 +34,7 @@ public class WebSocketAnnotation {
         bean = (RmiBean) this.httpSession.getAttribute("rmiBean");
         users.add(this);
         this.username=bean.getUserLoggedIn();
+        System.out.println("Election no Onopen:" + bean.getElection());
         if(bean.getElection()!=null && bean.getUserLoggedIn()!=null){
             sendMessage(bean.getUserLoggedIn() + " is in " + bean.getElection());
         }
@@ -52,15 +53,21 @@ public class WebSocketAnnotation {
 
     @OnMessage
     public void receiveMessage(String message) {
+        String[] tmp = message.split(" ");
 		// one should never trust the client, and sensitive HTML
         // characters should be replaced with &lt; &gt; &quot; &amp;
+        if(tmp[0].equals("Departamento")){
+            sendMessage(message);
+        }
         if(message.equals("left")){
             sendMessage(username+ " left "+bean.getElection());
+            bean.setElection(null);
         }
         else if(message.equals("Logged Out")) {
+            bean.setUserLoggedIn(null);
+            bean.setElection(null);
             sendMessage(username+" "+ message);
         }
-
     }
 
 

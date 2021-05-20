@@ -77,7 +77,7 @@ public class GerirMesasAction extends ActionSupport implements SessionAware, Adm
         this.mesa = mesa;
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

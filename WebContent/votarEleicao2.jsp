@@ -67,6 +67,7 @@
 
 </s:form>
 
-<p><a href="<s:url action="votarEleicaoPage" />" id="back" onclick="election()">Back</a> </p>
+<p><a href="<s:url action="votarEleicaoPage" />" onclick="election()">Back</a> </p>
+
 </body>
 </html>

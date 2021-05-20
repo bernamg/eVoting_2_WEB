@@ -1,6 +1,8 @@
 package Admin.model;
 
 
+import Admin.ws.WebSocketAnnotation;
+import rmiserver.ClientInterface;
 import rmiserver.RMIServerInterface;
 
 import java.io.IOException;
@@ -8,10 +10,11 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class RmiBean {
+public class RmiBean extends UnicastRemoteObject implements ClientInterface{
     private RMIServerInterface server;
     private String username = null; // username and password supplied by the user
     private String  userLoggedIn = null;
@@ -19,19 +22,26 @@ public class RmiBean {
     private String nomeLista = null, firstUser = null, election = null, list = null, submitOption = null, user = null, mesa = null, voto = null;
     private Date dataInicio = null, dataFim = null;
     private int check = 0;
-    private int votosBrancos = 0, votosNulos = 0, nVotosTotal = 0;
-    private float votosBrancosPerc = 0, votosNulosPerc = 0;
-    private ArrayList<String> nomeListaCandidatos = null;
-    private ArrayList<Integer> votosListaCandidatos = null;
-    private ArrayList<Float> percVotosListaCandidatos = null;
-    private ArrayList<String> users = null;
-
-    public RmiBean() {
+    WebSocketAnnotation ws;
+    public RmiBean() throws RemoteException {
+        super();
         try {
             server = (RMIServerInterface) Naming.lookup("RMISV");
         } catch (NotBoundException | RemoteException | MalformedURLException e) {
             e.printStackTrace(); // what happens *after* we reach this line?
         }
+        this.server.subscribe( this);
+        this.ws = new WebSocketAnnotation();
+    }
+
+    @Override
+    public void print_on_admin(String titulo_eleicao, String dep, int nVotos) throws RemoteException {
+        return;
+    }
+
+    public void printState(String mesa){
+        System.out.println("PrintState");
+        ws.receiveMessage(mesa);
     }
 
     public boolean checkAdmin() throws IOException {
@@ -139,18 +149,6 @@ public class RmiBean {
         this.nomeLista = nomeLista;
     }
 
-    public void setVotosBrancosPerc(float votosBrancosPerc) {
-        this.votosBrancosPerc = votosBrancosPerc;
-    }
-
-    public void setVotosNulosPerc(float votosNulosPerc) {
-        this.votosNulosPerc = votosNulosPerc;
-    }
-
-    public void setnVotosTotal(int nVotosTotal) {
-        this.nVotosTotal = nVotosTotal;
-    }
-
     public void setElection(String election) {
         this.election = election;
     }
@@ -183,25 +181,7 @@ public class RmiBean {
         this.quemVota = quemVota;
     }
 
-    public void setVotosBrancos(int votosBrancos) {
-        this.votosBrancos = votosBrancos;
-    }
 
-    public void setVotosNulos(int votosNulos) {
-        this.votosNulos = votosNulos;
-    }
-
-    public void setNomeListaCandidatos(ArrayList<String> nomeListaCandidatos) {
-        this.nomeListaCandidatos = nomeListaCandidatos;
-    }
-
-    public void setVotosListaCandidatos(ArrayList<Integer> votosListaCandidatos) {
-        this.votosListaCandidatos = votosListaCandidatos;
-    }
-
-    public void setPercVotosListaCandidatos(ArrayList<Float> percVotosListaCandidatos) {
-        this.percVotosListaCandidatos = percVotosListaCandidatos;
-    }
 
     public void setVoto(String voto) {
         this.voto = voto;

@@ -21,7 +21,7 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
             this.getRmiBean().setUserLoggedIn(this.username);
             if(this.getRmiBean().userLogin()){
                 session.put("username", username);
-                session.put("loggedin", true); // this marks the user as logged in
+                session.put("loggedinUser", true); // this marks the user as logged in
                 System.out.println("User logado");
                 return SUCCESS;
             }else{
@@ -41,7 +41,7 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
         this.password = password; // what about this input?
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

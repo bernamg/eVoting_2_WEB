@@ -49,7 +49,7 @@ public class CreateListAction extends ActionSupport implements SessionAware, Adm
         this.firstUser = firstUser;
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

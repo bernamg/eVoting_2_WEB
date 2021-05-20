@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public interface RMIServerInterface extends Remote {
+	public void subscribe(ClientInterface client) throws RemoteException;
 	public boolean checkNcreateAdmin(String username, String password) throws RemoteException, IOException;
 	public boolean loginAdmin(String username, String password) throws RemoteException;
 	public boolean createUserWeb(String tipoUser, String username, String password, String dep, String numPhone, String morada, String numCC, String valCC) throws RemoteException;

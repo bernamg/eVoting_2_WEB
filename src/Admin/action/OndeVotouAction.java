@@ -33,7 +33,7 @@ public class OndeVotouAction extends ActionSupport implements SessionAware, Admi
         this.user = user;
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

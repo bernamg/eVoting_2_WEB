@@ -16,14 +16,14 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
   <package name="Admin" extends="struts-default">
 
       <interceptors>
-          <interceptor name="adminInterceptor" class="Admin.interceptor.AdminInterceptor" />
-          <interceptor-stack name="adminStack">
-              <interceptor-ref name="adminInterceptor" />
+          <interceptor name="loginInterceptor" class="Admin.interceptor.loginInterceptor" />
+          <interceptor-stack name="loginStack">
+              <interceptor-ref name="loginInterceptor" />
               <interceptor-ref name="defaultStack" />
           </interceptor-stack>
       </interceptors>
 
-      <default-interceptor-ref name="adminStack" />
+      <default-interceptor-ref name="defaultStack" />
 	<default-action-ref name="index" />
 	
 	<global-results>
@@ -51,35 +51,51 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       </action>
 
       <action name="createUserPage">
+          <interceptor-ref name="loginStack" />
           <result>/criarUser.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="createElectionPage">
+          <interceptor-ref name="loginStack" />
           <result>/criarEleicao.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="optionsAdminPage">
+          <interceptor-ref name="loginStack" />
           <result>/optionsAdmin.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="gerirListasPage">
+          <interceptor-ref name="loginStack" />
           <result>/gerirListas.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="criarListaPage">
+          <interceptor-ref name="loginStack" />
           <result>/criarLista.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="gerirMesasPage">
+          <interceptor-ref name="loginStack" />
           <result>/gerirMesas.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="gerirEleicaoPage">
+          <interceptor-ref name="loginStack" />
           <result>/gerirEleicao.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="consultarEleicoesPage">
+          <interceptor-ref name="loginStack" />
           <result>/consultarEleicoes.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="loginUserPage">
@@ -87,11 +103,15 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       </action>
 
       <action name="editarListaEscolhaPage">
+          <interceptor-ref name="loginStack" />
           <result>/editarListaEscolha.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="editarLista2Page">
+          <interceptor-ref name="loginStack" />
           <result>/editarLista2.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="votarEleicaoPage">
@@ -99,15 +119,21 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       </action>
 
       <action name="ondeVotouPage">
+          <interceptor-ref name="loginStack" />
           <result>/ondeVotou.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="detalhesEleicoesPage">
+          <interceptor-ref name="loginStack" />
           <result>/detalhesEleicoes.jsp</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <action name="estadoUserPage">
+          <interceptor-ref name="loginStack" />
           <result>/estadoUsers.html</result>
+          <result name="login" type="redirectAction">/index.jsp</result>
       </action>
 
       <!-- 'registerAdmin' action calls 'execute' in 'RegisterAction' -->
@@ -117,8 +143,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
 
       <action name="createUser" class="Admin.action.CreateUserAction" method="execute">
-          <interceptor-ref name="defaultStack" />
-          <result name="login" type="redirectAction">index.jspg</result>
           <result name="success">/optionsAdmin.jsp</result>
           <result name="error">/criarUser.jsp</result>
       </action>

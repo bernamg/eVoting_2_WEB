@@ -40,7 +40,7 @@ public class LoginAdminAction extends ActionSupport implements SessionAware {
         this.password = password; // what about this input?
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

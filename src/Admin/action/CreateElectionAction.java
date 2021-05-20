@@ -73,7 +73,7 @@ public class CreateElectionAction extends ActionSupport implements SessionAware,
         this.dataFim = dataFim;
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");

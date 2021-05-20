@@ -89,7 +89,7 @@ public class EditListAction extends ActionSupport implements SessionAware, Admin
         this.firstUser = firstUser;
     }
 
-    public RmiBean getRmiBean() {
+    public RmiBean getRmiBean() throws RemoteException {
         if(!session.containsKey("rmiBean"))
             this.setRmiBean(new RmiBean());
         return (RmiBean) session.get("rmiBean");
