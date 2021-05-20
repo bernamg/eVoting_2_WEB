@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
   Created by IntelliJ IDEA.
   User: berna
@@ -12,9 +13,16 @@
     <title>Login User</title>
 </head>
 <body>
+    <c:choose>
+        <c:when test="${facebookBean.authorizationUrl != null}">
+            <p><a href="${facebookBean.authorizationUrl}">Login com o FB</a></p>
+        </c:when>
+    </c:choose>
+    <s:if test="%{#authorizationUrl != null}"> <!-- ESTE IF ESTA A FALHAR -->
 
-    <p><a href="${facebookBean.authorizationUrl}">Login com o FB</a></p>
+    </s:if>
 
+    <h3>Login normal</h3>
     <s:form action="loginUser" method="post">
         <s:text name="Username:" />
         <s:textfield name="username" /><br>

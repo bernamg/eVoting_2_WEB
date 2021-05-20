@@ -3,6 +3,7 @@ package Admin.model;
 
 import Admin.ws.WebSocketAnnotation;
 import rmiserver.ClientInterface;
+import com.github.scribejava.core.model.Token;
 import rmiserver.RMIServerInterface;
 
 import java.io.IOException;
@@ -59,6 +60,10 @@ public class RmiBean extends UnicastRemoteObject implements ClientInterface{
     public boolean createUser() throws RemoteException {
         check = 0;
         return server.createUserWeb(this.tipoUser, this.username, this.password, this.dep, this.numPhone, this.morada, this.numCC, this.valCC);
+    }
+
+    public boolean addAccessToken(Token accessToken, String username) throws RemoteException {
+        return server.adicionarAccessToken(accessToken, username);
     }
 
     public boolean createElection() throws RemoteException {

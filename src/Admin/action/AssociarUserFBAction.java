@@ -11,7 +11,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.rmi.RemoteException;
 import java.util.Map;
 
-public class LoginUserFBAction extends ActionSupport implements SessionAware {
+public class AssociarUserFBAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
 
@@ -33,10 +33,6 @@ public class LoginUserFBAction extends ActionSupport implements SessionAware {
         //System.out.println("(if your curious it looks like this: " + accessToken + " )");
         //System.out.println();
 
-
-        //Token accessToken = new Token("EAAHfZBdZAHqgkBAOrfLylxsExxfvMhNxn2ZC9En0e8sNTZCHoC1BZAO7ZBku8yU0tLOq11tb7s0SZBUBnrJvxn5V7eZCTxcjkZAXaz7h3b7PI4BjpAgj60AkHNUVcuXK4QZC8YwjCybwiBpxYFft089mB01zzRCOERvwW4xLIw8BdGsAZDZD",
-        //        apiSecret);
-
         // Now let's go and ask for a protected resource!
         System.out.println("Now we're going to access a protected resource...");
         OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL, service);
@@ -47,11 +43,31 @@ public class LoginUserFBAction extends ActionSupport implements SessionAware {
         System.out.println(response.getCode());
         System.out.println(response.getBody());
 
-        return SUCCESS;
+        //Associar o FB do mano
+        String username = this.getRmiBean().getUserLoggedIn();
+        if(username==null || username.compareTo("")==0){
+            System.out.println("==========================GANDA ERRO======================");
+        }
+        if(this.getRmiBean().addAccessToken(accessToken, username)){
+            return SUCCESS;
+        }
+        return ERROR;
+
     }
 
 
 
+
+    public RmiBean getRmiBean() throws RemoteException {
+        if(!session.containsKey("rmiBean"))
+            this.setRmiBean(new RmiBean());
+        return (RmiBean) session.get("rmiBean");
+    }
+
+
+    public void setRmiBean(RmiBean rmiBean) {
+        this.session.put("rmiBean", rmiBean);
+    }
 
     public FacebookBean getFacebookBean(){
         if(!session.containsKey("facebookBean"))

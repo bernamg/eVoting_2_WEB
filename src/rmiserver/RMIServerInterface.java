@@ -3,6 +3,8 @@
  */
 package rmiserver;
 
+import com.github.scribejava.core.model.Token;
+
 import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -37,4 +39,5 @@ public interface RMIServerInterface extends Remote {
 	public ArrayList<String> infoUser(String user) throws RemoteException;
 	public ArrayList<String> resultsElection(String eleicao) throws RemoteException;
 	public ArrayList<String> getInfoEleicoes() throws RemoteException;
+	public boolean adicionarAccessToken(Token accessToken, String username) throws RemoteException;
 }

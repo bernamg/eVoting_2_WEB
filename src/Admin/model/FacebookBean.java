@@ -35,5 +35,6 @@ public class FacebookBean {
     public void setService(OAuthService service) {
         this.service = service;
     }
+
 }
 
