@@ -31,8 +31,12 @@
 
         }
 
-        function election(){
+        function back(){
             websocket.send("left");
+        }
+
+        function voted(){
+            websocket.send("voted");
         }
 
         function doSend() {
@@ -63,11 +67,11 @@
             <input type="checkbox" id="${value}" name="votos" value="${value}">
             <label for="${value}">${value}</label><br>
         </c:forEach>
-    <p> <button type="submit" onclick="election()" >Submit</button></p>
+    <p> <button type="submit" onclick="voted()" >Submit</button></p>
 
 </s:form>
 
-<p><a href="<s:url action="votarEleicaoPage" />" onclick="election()">Back</a> </p>
+<p><a href="<s:url action="votarEleicaoPage" />" onclick="back()">Back</a> </p>
 
 </body>
 </html>

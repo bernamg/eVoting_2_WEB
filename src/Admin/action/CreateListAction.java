@@ -5,14 +5,10 @@ import Admin.model.RmiBean;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Map;
-import Admin.model.RmiBean;
 
-public class CreateListAction extends ActionSupport implements SessionAware, AdminAction{
+public class CreateListAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String nomeLista=null;

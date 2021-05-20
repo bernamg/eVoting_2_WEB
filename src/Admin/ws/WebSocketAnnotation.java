@@ -34,7 +34,6 @@ public class WebSocketAnnotation {
         bean = (RmiBean) this.httpSession.getAttribute("rmiBean");
         users.add(this);
         this.username=bean.getUserLoggedIn();
-        System.out.println("Election no Onopen:" + bean.getElection());
         if(bean.getElection()!=null && bean.getUserLoggedIn()!=null){
             sendMessage(bean.getUserLoggedIn() + " is in " + bean.getElection());
         }
@@ -47,7 +46,6 @@ public class WebSocketAnnotation {
     @OnClose
     public void end() {
     	// clean up once the WebSocket connection is closed
-        System.out.println("Remove user");
         users.remove(this);
     }
 
@@ -58,6 +56,10 @@ public class WebSocketAnnotation {
         // characters should be replaced with &lt; &gt; &quot; &amp;
         if(tmp[0].equals("Departamento")){
             sendMessage(message);
+        }
+        if(message.equals("voted")){
+            sendMessage(username+ " left "+bean.getElection());
+            return;
         }
         if(message.equals("left")){
             sendMessage(username+ " left "+bean.getElection());
@@ -80,7 +82,6 @@ public class WebSocketAnnotation {
     private void sendMessage(String text) {
     	// uses *this* object's session to call sendText()
     	try {
-			//this.session.getBasicRemote().sendText(text);
             for (WebSocketAnnotation w : users){
                 w.session.getBasicRemote().sendText(text);
             }

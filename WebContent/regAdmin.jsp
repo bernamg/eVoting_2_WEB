@@ -19,6 +19,6 @@
         <s:textfield name="password" type="password" /><br>
         <s:submit />
     </s:form>
-    <p><a href="<s:url action="index" />">Back to Index from regAdmin</a></p>
+    <p><a href="<s:url action="index" />">Back</a></p>
 </body>
 </html>

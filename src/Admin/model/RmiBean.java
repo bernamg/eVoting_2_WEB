@@ -37,7 +37,11 @@ public class RmiBean extends UnicastRemoteObject implements ClientInterface{
 
     @Override
     public void print_on_admin(String titulo_eleicao, String dep, int nVotos) throws RemoteException {
-        return;
+        if(dep.equals("online")){
+            ws.receiveMessage("Online " + dep + " " + nVotos + " votos");
+        }else {
+            ws.receiveMessage("Departamento " + dep + " " + nVotos + " votos");
+        }
     }
 
     public void printState(String mesa){
@@ -275,7 +279,6 @@ public class RmiBean extends UnicastRemoteObject implements ClientInterface{
 
 
     public boolean votar() throws RemoteException {
-        System.out.println("called Votar");
         System.out.println("this.voto: "+this.voto);
         System.out.println("this.election: "+this.election);
         boolean a = server.votarWeb(this.election, this.voto);
@@ -284,9 +287,7 @@ public class RmiBean extends UnicastRemoteObject implements ClientInterface{
     }
 
     public boolean userVoted() throws RemoteException {
-        System.out.println("called userVoted");
         boolean a =server.userVoted(this.userLoggedIn, this.election);
-        System.out.println("print do a: "+a);
         return a;
 
     }

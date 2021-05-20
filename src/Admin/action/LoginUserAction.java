@@ -35,8 +35,8 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
                 System.out.println("User logado");
 
                 // Preparar Associar User
-                String apiKey = "527739111582217";
-                String apiSecret = "38d8da36691c0bd8123a2ec6882f1d22";
+                String apiKey = "811663439461976";
+                String apiSecret = "a4e1832b46f0e3cf34f395a84bbe8eae";
 
 
                 OAuthService service = new ServiceBuilder()

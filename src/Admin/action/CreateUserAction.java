@@ -5,12 +5,10 @@ import Admin.model.RmiBean;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Map;
-import Admin.model.RmiBean;
 
-public class CreateUserAction extends ActionSupport implements SessionAware, AdminAction{
+public class CreateUserAction extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 4L;
     private Map<String, Object> session;
     private String username = null, password = null,name=null,dep=null,numPhone=null,morada=null, numCC=null, valCC=null, tipoUser=null;

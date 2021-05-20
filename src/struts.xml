@@ -118,6 +118,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/votarEleicao.jsp</result>
       </action>
 
+      <action name="optionsUserPage">
+        <result>/optionsUser.jsp</result>
+      </action>
+
       <action name="ondeVotouPage">
           <interceptor-ref name="loginStack" />
           <result>/ondeVotou.jsp</result>
