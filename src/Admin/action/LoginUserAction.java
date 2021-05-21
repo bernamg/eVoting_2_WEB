@@ -34,11 +34,12 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
                 session.put("loggedinUser", true); // this marks the user as logged in
                 System.out.println("User logado");
 
+                /*
                 // Preparar Associar User
                 String apiKey = "811663439461976";
                 String apiSecret = "a4e1832b46f0e3cf34f395a84bbe8eae";
 
-
+                // ASSOCIAR
                 OAuthService service = new ServiceBuilder()
                         .provider(FacebookApi2.class)
                         .apiKey(apiKey)
@@ -59,6 +60,29 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
 
                 this.getFacebookBean().setService(service);
                 this.getFacebookBean().setAuthorizationUrl(authorizationUrl);
+
+
+                // LOGIN
+                service = new ServiceBuilder()
+                        .provider(FacebookApi2.class)
+                        .apiKey(apiKey)
+                        .apiSecret(apiSecret)
+                        .callback("http://localhost:8080/WebApp/loginUserFB")
+                        .scope("public_profile")
+                        .build();
+
+                System.out.println("=== " + NETWORK_NAME + "'s OAuth Workflow ===");
+                System.out.println();
+
+
+                // Obtain the Authorization URL
+                System.out.println("Fetching the Authorization URL...");
+                authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
+                System.out.println("Got the Authorization URL!");
+                System.out.println(authorizationUrl);
+
+                this.getFacebookBean().setServiceLogin(service);
+                this.getFacebookBean().setAuthorizationUrlLogin(authorizationUrl);*/
 
                 return SUCCESS;
             }else{

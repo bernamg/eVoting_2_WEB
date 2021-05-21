@@ -50,10 +50,6 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
           <result>/loginAdmin.jsp</result>
       </action>
 
-      <action name="logUser">
-          <result>/loginUser.jsp</result>
-      </action>
-
       <action name="createUserPage">
           <interceptor-ref name="loginStack" />
           <result>/criarUser.jsp</result>
@@ -146,6 +142,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       <result name="error">/regAdmin.jsp</result>
     </action>
 
+      <action name="logUser" class="Admin.action.PrepararLoginUserAction" method="execute">
+          <result name="success">/loginUser.jsp</result>
+          <result name="login">optionsUser.jsp</result>
+      </action>
+
       <action name="createUser" class="Admin.action.CreateUserAction" method="execute">
           <result name="success">/optionsAdmin.jsp</result>
           <result name="error">/criarUser.jsp</result>
@@ -179,6 +180,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       </action>
 
       <action name="loginUser" class="Admin.action.LoginUserAction" method="execute">
+          <result name="success">/optionsUser.jsp</result>
+          <result name="login">/loginUser.jsp</result>
+      </action>
+
+      <action name="loginUserFB" class="Admin.action.LoginUserFBAction" method="execute">
           <result name="success">/optionsUser.jsp</result>
           <result name="login">/loginUser.jsp</result>
       </action>
