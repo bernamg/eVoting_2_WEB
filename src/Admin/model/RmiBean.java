@@ -69,8 +69,12 @@ public class RmiBean extends UnicastRemoteObject implements ClientInterface{
         return server.createUserWeb(this.tipoUser, this.username, this.password, this.dep, this.numPhone, this.morada, this.numCC, this.valCC);
     }
 
-    public boolean addAccessToken(Token accessToken, String username) throws RemoteException {
-        return server.adicionarAccessToken(accessToken, username);
+    public boolean addFbCode(String fbCode, String username) throws RemoteException {
+        return server.adicionarFbCode(fbCode, username);
+    }
+
+    public String getUsernameFromFbCode(String fbCode) throws RemoteException {
+        return server.getUsernameFromFBCode(fbCode);
     }
 
     public boolean createElection() throws RemoteException {

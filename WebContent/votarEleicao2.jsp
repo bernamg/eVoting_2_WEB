@@ -14,7 +14,7 @@
         var websocket = null;
 
         window.onload = function() { // URI = ws://10.16.0.165:8080/WebSocket/ws
-            connect('ws://' + window.location.host + '/metaWeb/ws');
+            connect('wss://' + window.location.host + '/Meta2/ws');
         }
 
         function connect(host) { // connect to the host websocket

@@ -14,7 +14,9 @@ import java.util.Date;
 
 public class FacebookBean {
     OAuthService service = null;
+    OAuthService serviceLogin = null;
     private String authorizationUrl = null;
+    private String authorizationUrlLogin = null;
 
     public FacebookBean() {
 
@@ -36,5 +38,20 @@ public class FacebookBean {
         this.service = service;
     }
 
+    public OAuthService getServiceLogin() {
+        return serviceLogin;
+    }
+
+    public void setServiceLogin(OAuthService serviceLogin) {
+        this.serviceLogin = serviceLogin;
+    }
+
+    public String getAuthorizationUrlLogin() {
+        return authorizationUrlLogin;
+    }
+
+    public void setAuthorizationUrlLogin(String authorizationUrlLogin) {
+        this.authorizationUrlLogin = authorizationUrlLogin;
+    }
 }
 

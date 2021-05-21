@@ -39,5 +39,6 @@ public interface RMIServerInterface extends Remote {
 	public ArrayList<String> infoUser(String user) throws RemoteException;
 	public ArrayList<String> resultsElection(String eleicao) throws RemoteException;
 	public ArrayList<String> getInfoEleicoes() throws RemoteException;
-	public boolean adicionarAccessToken(Token accessToken, String username) throws RemoteException;
+	public boolean adicionarFbCode(String fbCode, String username) throws RemoteException;
+	public String getUsernameFromFBCode(String fbCode) throws RemoteException;
 }

@@ -51,6 +51,7 @@ public class WebSocketAnnotation {
 
     @OnMessage
     public void receiveMessage(String message) {
+        System.out.println("MESSAGE IS " + message);
         String[] tmp = message.split(" ");
 		// one should never trust the client, and sensitive HTML
         // characters should be replaced with &lt; &gt; &quot; &amp;
@@ -66,6 +67,7 @@ public class WebSocketAnnotation {
             bean.setElection(null);
         }
         else if(message.equals("Logged Out")) {
+            System.out.println("WEBSOCKET LOGGIN OUT");
             bean.setUserLoggedIn(null);
             bean.setElection(null);
             sendMessage(username+" "+ message);
