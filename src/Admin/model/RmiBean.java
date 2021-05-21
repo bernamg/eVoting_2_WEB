@@ -15,6 +15,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Classe Rmi Bean
+ * @return
+ */
 public class RmiBean extends UnicastRemoteObject implements ClientInterface{
     private RMIServerInterface server;
     private String username = null; // username and password supplied by the user
