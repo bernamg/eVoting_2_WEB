@@ -45,7 +45,6 @@ public class RmiBean extends UnicastRemoteObject implements ClientInterface{
     }
 
     public void printState(String mesa){
-        System.out.println("PrintState");
         ws.receiveMessage(mesa);
     }
 
@@ -133,7 +132,6 @@ public class RmiBean extends UnicastRemoteObject implements ClientInterface{
     }
 
     public boolean deleteList() throws RemoteException {
-        System.out.println("called deleteList");
         return server.deleteList(this.election, this.list);
     }
 

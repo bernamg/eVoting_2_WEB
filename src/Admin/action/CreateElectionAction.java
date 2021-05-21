@@ -18,7 +18,7 @@ public class CreateElectionAction extends ActionSupport implements SessionAware 
     private String quemVota=null;
     private String dataInicio=null;
     private String dataFim = null;
-    private String[] tmp=null, tmp1=null;
+    private String[] tmp=null;
     @Override
     public String execute() throws RemoteException {
         tmp = dataInicio.split("[-T:]");
